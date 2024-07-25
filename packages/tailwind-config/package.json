@@ -1,0 +1,9 @@
+{
+  "name": "@repo/tailwind-config",
+  "version": "1.0.0",
+  "license": "MIT",
+  "description": "",
+  "devDependencies": {
+    "tailwindcss": "^3.4.6"
+  }
+}
