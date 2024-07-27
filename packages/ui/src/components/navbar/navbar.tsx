@@ -4,7 +4,7 @@ import { LogoutButton, ThemeSwitch } from "@repo/ui";
 export const Navbar = () => {
   const currentChannel:string = "the toon - newcastle and gateshed multiplex"
   return (
-    <nav className="flex items-center justify-between min-w-full sticky top-0 z-50 bg-inherit dark:bg-inherit">
+    <nav className="flex items-center justify-between min-w-full top-0 bg-inherit dark:bg-inherit">
       <div className="flex items-center justify-center m-3">
         {/* TODO: export actual svg later */}
         {/* <Image
@@ -20,7 +20,7 @@ export const Navbar = () => {
       </div>
       <div className="flex items-center justify-between m-3">
         <div className="ml-1 mr-2">
-          <LogoutButton />
+          {/* <LogoutButton /> */}
         </div>
         <div className="mx-1">
           <ThemeSwitch />
