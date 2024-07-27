@@ -60,7 +60,7 @@ export function DatePickerFromUI() {
           "dd/MM/yyyy"
         )}`}
         readOnly
-        className="block w-full p-3 px-10 mr-4 text-sm shadow-xl text-gray-900 border-gray-300 rounded-full bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-sky-700  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        className="block w-full py-3 px-10 mr-4 text-sm border ml-4 rounded-full bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-inherit dark:focus:ring-blue-500 dark:focus:border-blue-500"
         onClick={() => setOpen((open) => !open)}
       />
 
@@ -80,7 +80,7 @@ export function DatePickerFromUI() {
             ranges={range}
             months={2}
             direction="horizontal"
-            className="calendarElement ml-52 mt-3"
+            className="calendarElement ml-96 mt-3"
             maxDate={addDays(new Date(), 1)}
           />
         )}

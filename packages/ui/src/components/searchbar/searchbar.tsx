@@ -20,7 +20,7 @@ export const SearchBar = () => {
               className="block w-full py-3 px-10 mr-4 text-sm border focus:border-0 ml-4 rounded-full bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-inherit dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Search"
               required
-              onChange={(e) => setSearchString(e.target.value)}
+              onChange={(e) => setSearchString(e.target.value.toLocaleLowerCase())}
             />
             <button
               type="submit"
