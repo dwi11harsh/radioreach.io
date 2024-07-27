@@ -4,13 +4,13 @@ import {DateRange} from "react-date-range"
 import format from "date-fns/format";
 import { addDays } from "date-fns";
 import { useRecoilState } from "recoil";
-import { fromDateState as fromDate, toDateState as toDate } from "@repo/ui";
+import { fromDateState as fromDate, fromDateState, toDateState as toDate, toDateState } from "@repo/ui";
 
 import "react-date-range/dist/styles.css"
 import "react-date-range/dist/theme/default.css"
 import { cn } from "@repo/shadcn";
 
-export function DateRangePicker() {
+export function DatePickerFromUI() {
   // date state
   const [fdate, setFdate] = useRecoilState(fromDate);
   const [tdate, setTdate] = useRecoilState(toDate);
@@ -72,7 +72,6 @@ export function DateRangePicker() {
               setRange([item.selection]);
               //@ts-ignore
               setFdate(format(item.selection.startDate as Date, "yyyy-MM-dd"));
-              // console.log("fdate from date picker, ", fdate);
               //@ts-ignore
               setTdate(format(item.selection.endDate as Date, "yyyy-MM-dd"));
             }}
@@ -90,12 +89,15 @@ export function DateRangePicker() {
   );
 }
 
-export const DatePickerFromUI = () => {
+
+export const DatePicker = () => {
+  const [fromDate, setFromDate] = useRecoilState(fromDateState)
+  const [toDate, setToDate] = useRecoilState(toDateState)
     // date state
   const [range, setRange] = useState([
     {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 7),
+      startDate: new Date(fromDate),
+      endDate: new Date(toDate),
       key: 'selection'
     }
   ])
@@ -150,7 +152,7 @@ export const DatePickerFromUI = () => {
             ranges={range}
             months={1}
             direction="horizontal"
-            className={cn("calendarElement", "ml-14 mt-3 z-10")}
+            className={cn("calendarElement", "ml-40 mt-3 z-10")}
           />
         }
       </div>
@@ -158,3 +160,5 @@ export const DatePickerFromUI = () => {
     </div>
     )
 }
+
+//item => setRange([item.selection])

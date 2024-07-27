@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 
-export const fromDateState = atom<Date>({
+export const fromDateState = atom<string>({
     key: "fromDateState",
-    default: new Date()
+    default: "2023-12-01",
 })

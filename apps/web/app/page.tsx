@@ -2,10 +2,11 @@
 
 import { CurrentTable, DatePickerFromUI, playLogTableDataState, SearchBar, StaticBar, Topbar } from "@repo/ui";
 import { useEffect } from "react";
-import { useRecoilState } from "recoil";
-import { BASE_URL as api_endpoint } from "@repo/ui";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { fromDateState, toDateState } from "@repo/ui";
 import { AxiosResponse } from "axios";
 import axios from "axios";
+import { BASE_URL as api_endpoint } from "@repo/ui";
 
 type Songs = {
     rank: number;
@@ -20,30 +21,33 @@ type Songs = {
 
 const Home = () => {
     const [playLogTableData, setPlayLogTableData] = useRecoilState(playLogTableDataState);
+    const fDate = useRecoilValue(fromDateState);
+    const tDate = useRecoilValue(toDateState);
+
+    const fetchSongsData = async () => {
+        try {
+            const songsResponseFromApi: AxiosResponse<{ data: Songs[] }> = await axios.get(
+                `${api_endpoint}/user/songs`,
+                {
+                    params: {
+                        f_date: fDate,
+                        t_date: tDate,
+                    },
+                }
+            );
+
+            setPlayLogTableData(songsResponseFromApi.data.data); 
+        } catch (error) {
+            console.error("Error fetching songs data:", error);
+        }
+    };
 
     useEffect(() => {
-        const fetchSongsData = async () => {
-            try {
-                const songsResponseFromApi: AxiosResponse<{ data: Songs[] }> = await axios.get(
-                    `${api_endpoint}/user/songs`,
-                    {
-                        params: {
-                            f_date: "2023-12-01",
-                            t_date: "2024-07-01",
-                        },
-                    }
-                );
-                // console.log("Songs Response from server Action", songsResponseFromApi.data.data);
-                setPlayLogTableData(songsResponseFromApi.data.data); 
-            } catch (error) {
-                console.error("Error fetching songs data:", error);
-            }
-        };
-
         if (typeof window !== "undefined") {
             fetchSongsData();
+            console.log("envoked")
         }
-    }, [setPlayLogTableData]); // Dependency array includes setPlayLogTableData
+    }, [fDate, tDate]); // Trigger fetch when either date changes
 
     return (
         <main className="min-h-screen w-full bg-inherit dark:bg-inherit">

@@ -1,6 +1,9 @@
 import { atom } from "recoil";
 
-export const toDateState = atom<Date>({
+let d = new Date();
+const t_date = d.toISOString().split("T")[0];
+
+export const toDateState = atom<string>({
     key: "toDateState",
-    default: new Date()
+    default: t_date,
 })

@@ -42,11 +42,11 @@ export const PlayLogTable = () => {
             </thead>
             <tbody>
               {songsData
-                // .filter((item) => {
-                //   return searchString?.toLocaleLowerCase() === ""
-                //     ? item
-                //     : item.title.toLocaleLowerCase().includes(searchString? searchString : "");
-                // })
+                .filter((item) => {
+                  return searchString?.toLocaleLowerCase() === ""
+                    ? item
+                    : item.title.toLocaleLowerCase().includes(searchString? searchString : "");
+                })
                 .map((song, index) => (
                   <tr
                     onClick={() => {
