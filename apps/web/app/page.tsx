@@ -53,7 +53,7 @@ const Home = () => {
         <main className="min-h-screen w-full bg-inherit dark:bg-inherit">
             <Topbar />
             <StaticBar />
-            <div className="flex justify-between">
+            <div className="flex justify-between m-1">
                 <DatePickerFromUI />
                 <SearchBar />
             </div>

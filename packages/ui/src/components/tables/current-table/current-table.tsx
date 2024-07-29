@@ -1,8 +1,7 @@
 "use client"
 
 import { useRecoilValue } from "recoil"
-import { getCurrentTableState, TableLoader } from "@repo/ui"
-import { PlayLogTable } from "../play-log-table"
+import { getCurrentTableState, ReceiverTable, PlayLogTable, TableLoader } from "@repo/ui"
 
 export const Table = () => {
     const selectedTable = useRecoilValue(getCurrentTableState)
@@ -11,7 +10,9 @@ export const Table = () => {
         return (
             <div><PlayLogTable /></div>
         ) 
-    } else return <TableLoader />
+    } else if ( selectedTable === "Receiver Data") {
+        return <ReceiverTable />
+    } else <TableLoader />
     
 } 
 

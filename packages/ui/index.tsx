@@ -8,6 +8,8 @@ export * from "./src/components/date-range-picker"
 export * from "./src/components/searchbar"
 export * from "./src/components/tables/current-table"
 export * from "./src/components/tables/table-skeleton"
+export * from "./src/components/tables/reciever-data-table"
+export * from "./src/components/tables/play-log-table"
 
 export * from "./src/providers";
 
