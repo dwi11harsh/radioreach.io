@@ -7,6 +7,7 @@ import {
   PlayLogTable,
   TableLoader,
   DrawerComponent,
+  MoreInformationReceiverData,
 } from "@repo/ui";
 
 export const Table = () => {
@@ -20,7 +21,7 @@ export const Table = () => {
     );
   } else if (selectedTable === "Receiver Data") {
     return <ReceiverTable />;
-  } else return <DrawerComponent />;
+  } else return <MoreInformationReceiverData />;
 };
 
 export const CurrentTable = () => {

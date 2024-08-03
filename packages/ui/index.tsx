@@ -10,6 +10,7 @@ export * from "./src/components/tables/current-table";
 export * from "./src/components/tables/table-skeleton";
 export * from "./src/components/tables/receiver-data-table";
 export * from "./src/components/tables/play-log-table";
+export * from "./src/components/more-information";
 
 export * from "./src/components/drawer-component";
 

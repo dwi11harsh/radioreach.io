@@ -2,8 +2,12 @@
 
 import Image from "next/image";
 import { Drawer } from "vaul";
-import { drawerState as currentDrawerState } from "@repo/ui";
-import { useRecoilState } from "recoil";
+import {
+  MoreInformationReceiverData,
+  drawerState as currentDrawerState,
+  getCurrentTableState,
+} from "@repo/ui";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 export const DrawerComponent = () => {
   const [drawerState, setDrawerState] = useRecoilState(currentDrawerState);
@@ -24,20 +28,8 @@ export const DrawerComponent = () => {
       >
         <article className="relative w-screen pb-10 bg-gray-200 dark:bg-slate-700 flex flex-col space-y-6 overflow-y-scroll h-full">
           <div className="w-64 sm:w-full flex flex-col">
-            <div className="w-fit flex items-center justify-center flex-col">
-              <div className="border mr-3 mt-10 rounded-2xl border-slate-500 w-fit">
-                <p className="py-3 px-12 text-slate-600 dark:text-slate-300">
-                  Total Audience - 23937
-                </p>
-              </div>
-              <div className="ml-3">
-                <ForReceiverData />
-              </div>
-              <div className="border mr-3 mt-3 rounded-2xl border-slate-500 w-fit">
-                <p className="py-3 px-12 text-slate-600 dark:text-slate-300">
-                  NTM - 017
-                </p>
-              </div>
+            <div className="">
+              <RequiredComponent />
             </div>
           </div>
         </article>
@@ -52,7 +44,68 @@ export const DrawerComponent = () => {
   );
 };
 
-const ForReceiverData = () => {
+const RequiredComponent = () => {
+  const currTable = useRecoilValue(getCurrentTableState);
+
+  if (currTable === "Receiver Data") {
+    return <ReceiverData />;
+  } else if (currTable === "Play Log") {
+    return <PlayLogData />;
+  }
+};
+
+const PlayLogData = () => {
+  return (
+    <div className="w-96 ml-10 mt-28 flex items-center justify-center flex-col">
+      <div className="w-96 border border-slate-500 rounded-xl p-4 pl-6">
+        <div>
+          <div className="text-3xl text-center font-medium text-slate-700 dark:text-slate-400 m-1">
+            Download Play Logs
+          </div>
+          <div className="border border-slate-500 rounded-xl p-2 mt-4 mb-2 text-center text-lg dark:text-slate-400 text-slate-700">
+            OFCOM 42-day Compliance Report
+          </div>
+        </div>
+        <div>
+          <div className="py-4 pl-4 dark:text-slate-400 text-slate-700">
+            <span>Start Date : 22/04/2024</span>
+          </div>
+        </div>
+        <div className="border border-slate-500 rounded-xl p-2 mt-4 mb-2 text-center text-lg dark:text-slate-400 text-slate-700">
+          Customised Report
+        </div>
+        <div>
+          <div className="py-4 pl-4 dark:text-slate-400 text-slate-700">
+            <span>Date Range : 23/03/2024 to 22/04/2024</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ReceiverData = () => {
+  return (
+    <div className="w-fit flex items-center justify-center flex-col">
+      <div className="border mr-3 mt-10 rounded-2xl dark:text-slate-400 border-slate-500 w-fit">
+        <p className="py-3 px-12  text-slate-600 dark:text-slate-400">
+          Total Audience - 23937
+        </p>
+      </div>
+      <div className="ml-3">
+        <MapForReceiverData />
+      </div>
+      <div className="border mr-3 mt-3 rounded-2xl dark:text-slate-400 border-slate-500 w-fit">
+        <p className="py-3 px-12 text-slate-600 dark:text-slate-400">
+          NTM - 017
+        </p>
+      </div>
+      <MoreInformationReceiverData />
+    </div>
+  );
+};
+
+const MapForReceiverData = () => {
   return (
     <div className="sm:m-10">
       <Image src="/map-svg.svg" alt="Google Maps" width={400} height={800} />
