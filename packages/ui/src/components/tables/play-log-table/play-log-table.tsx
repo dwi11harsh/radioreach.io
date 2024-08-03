@@ -1,21 +1,30 @@
-"use client"
-import { useRecoilState, useRecoilValue } from "recoil"
-import { currentSongState, getPlayLogTableDataState, queryStringState, searchBarTextState, TableLoader } from "@repo/ui"
-import { formatDateTimeForTimeOfPlay } from "@repo/ui"
+"use client";
+import { useRecoilState, useRecoilValue } from "recoil";
+import {
+  currentSongState,
+  drawerState as currentDrawerState,
+  getPlayLogTableDataState,
+  queryStringState,
+  searchBarTextState,
+  TableLoader,
+} from "@repo/ui";
+import { formatDateTimeForTimeOfPlay } from "@repo/ui";
 
 export const PlayLogTable = () => {
-    const songsData = useRecoilValue(getPlayLogTableDataState)
-    const [searchString, setSearchString] = useRecoilState(searchBarTextState)
-    const [currentSong, setCurrentSong] = useRecoilState(currentSongState)
-    const [queryString, setQueryString] = useRecoilState(queryStringState)
+  const songsData = useRecoilValue(getPlayLogTableDataState);
+  const [searchString, setSearchString] = useRecoilState(searchBarTextState);
+  const [currentSong, setCurrentSong] = useRecoilState(currentSongState);
+  const [queryString, setQueryString] = useRecoilState(queryStringState);
+  const [drawerState, setDrawerState] = useRecoilState(currentDrawerState);
 
-    const handleRowClick = (mm_song_id: string) => {
-        setQueryString(mm_song_id);
-        // setDrawerState((prevState) => !prevState);
-      };
+  const handleRowClick = (mm_song_id: string) => {
+    setQueryString(mm_song_id);
+    setDrawerState((prevState) => !prevState);
+  };
 
-    if (songsData) {
-        return <div>
+  if (songsData) {
+    return (
+      <div>
         <div className="max-h-[2080px] relative overflow-auto shadow-md sm:rounded-lg no-scrollbar">
           <table className="w-full text-sm text-left text-gray-500 dark:text-gray-100">
             <thead className="sticky top-0 text-xs text-gray-700 uppercase bg-gray-50 dark:bg-slate-700 dark:text-gray-100">
@@ -45,7 +54,9 @@ export const PlayLogTable = () => {
                 .filter((item) => {
                   return searchString?.toLocaleLowerCase() === ""
                     ? item
-                    : item.title.toLocaleLowerCase().includes(searchString? searchString : "");
+                    : item.title
+                        .toLocaleLowerCase()
+                        .includes(searchString ? searchString : "");
                 })
                 .map((song, index) => (
                   <tr
@@ -77,5 +88,6 @@ export const PlayLogTable = () => {
           </table>
         </div>
       </div>
-    } else <TableLoader />
-}
+    );
+  } else <TableLoader />;
+};

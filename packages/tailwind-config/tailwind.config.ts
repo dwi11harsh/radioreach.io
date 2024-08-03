@@ -6,6 +6,8 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "../../packages/ui/**/*.{js,ts,jsx,tsx,mdx}",
+    "../../packages/shadcn/**/*.{js,ts,jsx,tsx,mdx}",
+    "../../packages/shadcn/components/ui/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -17,19 +19,19 @@ const config: Config = {
     },
   },
   plugins: [
-    function ({addUtilities}: {addUtilities:any}) {
+    function ({ addUtilities }: { addUtilities: any }) {
       const newUtilities = {
         ".no-scrollbar::-webkit-scrollbar": {
           display: "none",
         },
         ".no-scrollbar": {
           "-ms-overflow-style": "none",
-          "scrollbar-width": "none"
-        }
-      }
+          "scrollbar-width": "none",
+        },
+      };
 
-      addUtilities(newUtilities)
-    }
+      addUtilities(newUtilities);
+    },
   ],
   darkMode: "class",
 };
