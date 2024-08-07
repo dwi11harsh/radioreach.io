@@ -21,7 +21,7 @@ export const Table = () => {
     );
   } else if (selectedTable === "Receiver Data") {
     return <ReceiverTable />;
-  } else return <MoreInformationReceiverData />;
+  } else return <TableLoader />;
 };
 
 export const CurrentTable = () => {
